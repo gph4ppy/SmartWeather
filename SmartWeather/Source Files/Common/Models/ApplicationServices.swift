@@ -11,13 +11,12 @@ final class ApplicationServices {
     static let shared = ApplicationServices()
 
     var weatherManager: WeatherManagerProtocol
-    var locationManager: LocationManagerProtocol
+    var locationService: LocationServiceProtocol
 
-    init(
-        weatherManager: WeatherManagerProtocol = WeatherManager(),
-        locationManager: LocationManagerProtocol = LocationManager()
-    ) {
-        self.weatherManager = weatherManager
-        self.locationManager = locationManager
+    init() {
+        let locationManager = SWLocationManager()
+        let locationService = LocationService(manager: locationManager)
+        self.weatherManager = WeatherManager(locationService: locationService)
+        self.locationService = locationService
     }
 }

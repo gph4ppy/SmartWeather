@@ -18,16 +18,16 @@ final class WeatherManager: WeatherManagerProtocol {
     let service: WeatherService
     var currentWeather: CurrentWeather?
 
-    private var locationManager: LocationManagerProtocol
+    private var locationService: LocationServiceProtocol
 
     init(
         service: WeatherService = WeatherService(),
         currentWeather: CurrentWeather? = nil,
-        locationManager: LocationManagerProtocol = ApplicationServices.shared.locationManager
+        locationService: LocationServiceProtocol = ApplicationServices.shared.locationService
     ) {
         self.service = service
         self.currentWeather = currentWeather
-        self.locationManager = locationManager
+        self.locationService = locationService
     }
 
     var symbol: String {
@@ -43,9 +43,13 @@ final class WeatherManager: WeatherManagerProtocol {
         currentWeather?.condition.description ?? "Unknown"
     }
 
+    var city: String {
+        locationService.city ?? "Unknown City"
+    }
+
     func getWeatherForLocation() async {
         do {
-            let location = locationManager.currentLocation
+            let location = locationService.manager.currentLocation
             let weather = try await service.weather(for: location)
             currentWeather = weather.currentWeather
         } catch {

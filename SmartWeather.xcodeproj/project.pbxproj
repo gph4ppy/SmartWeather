@@ -14,9 +14,12 @@
 		1C2263E729F9835E00604A9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C2263E529F9835E00604A9B /* LaunchScreen.storyboard */; };
 		1C2263FE29F9835E00604A9B /* SmartWeatherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2263FD29F9835E00604A9B /* SmartWeatherUITestsLaunchTests.swift */; };
 		1C22641929F98A4100604A9B /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22641829F98A4100604A9B /* WeatherManager.swift */; };
-		1C22641C29F98D9D00604A9B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22641B29F98D9D00604A9B /* LocationManager.swift */; };
+		1C22641C29F98D9D00604A9B /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22641B29F98D9D00604A9B /* LocationService.swift */; };
 		1C22641F29F9946800604A9B /* ApplicationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22641E29F9946800604A9B /* ApplicationServices.swift */; };
 		1C22642129F9947600604A9B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22642029F9947600604A9B /* Logger.swift */; };
+		1C22642329F9962B00604A9B /* CLLocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22642229F9962B00604A9B /* CLLocationExtension.swift */; };
+		1C22642529F9CA1300604A9B /* SWLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22642429F9CA1300604A9B /* SWLocationManager.swift */; };
+		1C22642929F9CA5400604A9B /* LocationService+CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22642829F9CA5400604A9B /* LocationService+CLLocationManagerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,9 +52,12 @@
 		1C2263FD29F9835E00604A9B /* SmartWeatherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWeatherUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1C22641829F98A4100604A9B /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		1C22641A29F98C2100604A9B /* SmartWeather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SmartWeather.entitlements; sourceTree = "<group>"; };
-		1C22641B29F98D9D00604A9B /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		1C22641B29F98D9D00604A9B /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		1C22641E29F9946800604A9B /* ApplicationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServices.swift; sourceTree = "<group>"; };
 		1C22642029F9947600604A9B /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		1C22642229F9962B00604A9B /* CLLocationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationExtension.swift; sourceTree = "<group>"; };
+		1C22642429F9CA1300604A9B /* SWLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWLocationManager.swift; sourceTree = "<group>"; };
+		1C22642829F9CA5400604A9B /* LocationService+CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationService+CLLocationManagerDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +178,7 @@
 		1C22641029F9888600604A9B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				1C22642229F9962B00604A9B /* CLLocationExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -229,8 +236,10 @@
 		1C22641729F98A3400604A9B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1C22642729F9CA4500604A9B /* Extensions */,
 				1C22641829F98A4100604A9B /* WeatherManager.swift */,
-				1C22641B29F98D9D00604A9B /* LocationManager.swift */,
+				1C22641B29F98D9D00604A9B /* LocationService.swift */,
+				1C22642429F9CA1300604A9B /* SWLocationManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -242,6 +251,14 @@
 				1C22642029F9947600604A9B /* Logger.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1C22642729F9CA4500604A9B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1C22642829F9CA5400604A9B /* LocationService+CLLocationManagerDelegate.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -398,11 +415,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C22641929F98A4100604A9B /* WeatherManager.swift in Sources */,
+				1C22642329F9962B00604A9B /* CLLocationExtension.swift in Sources */,
 				1C2263DF29F9835D00604A9B /* WeatherViewController.swift in Sources */,
 				1C22641F29F9946800604A9B /* ApplicationServices.swift in Sources */,
-				1C22641C29F98D9D00604A9B /* LocationManager.swift in Sources */,
+				1C22641C29F98D9D00604A9B /* LocationService.swift in Sources */,
 				1C22642129F9947600604A9B /* Logger.swift in Sources */,
 				1C2263DB29F9835D00604A9B /* AppDelegate.swift in Sources */,
+				1C22642929F9CA5400604A9B /* LocationService+CLLocationManagerDelegate.swift in Sources */,
+				1C22642529F9CA1300604A9B /* SWLocationManager.swift in Sources */,
 				1C2263DD29F9835D00604A9B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,7 +594,7 @@
 				DEVELOPMENT_TEAM = G6NTB33VYZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SmartWeather/Supporting Files/Info.plist";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "SmartWeather needs your location to show you the weather in your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "SmartWeather needs your location to show you the weather in your location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -603,7 +623,7 @@
 				DEVELOPMENT_TEAM = G6NTB33VYZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SmartWeather/Supporting Files/Info.plist";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "SmartWeather needs your location to show you the weather in your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "SmartWeather needs your location to show you the weather in your location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
