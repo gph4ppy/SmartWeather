@@ -13,8 +13,6 @@
 		1C2263E229F9835D00604A9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C2263E029F9835D00604A9B /* Main.storyboard */; };
 		1C2263E429F9835E00604A9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C2263E329F9835E00604A9B /* Assets.xcassets */; };
 		1C2263E729F9835E00604A9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C2263E529F9835E00604A9B /* LaunchScreen.storyboard */; };
-		1C2263F229F9835E00604A9B /* SmartWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2263F129F9835E00604A9B /* SmartWeatherTests.swift */; };
-		1C2263FC29F9835E00604A9B /* SmartWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2263FB29F9835E00604A9B /* SmartWeatherUITests.swift */; };
 		1C2263FE29F9835E00604A9B /* SmartWeatherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2263FD29F9835E00604A9B /* SmartWeatherUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,9 +43,7 @@
 		1C2263E629F9835E00604A9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C2263E829F9835E00604A9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C2263ED29F9835E00604A9B /* SmartWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1C2263F129F9835E00604A9B /* SmartWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWeatherTests.swift; sourceTree = "<group>"; };
 		1C2263F729F9835E00604A9B /* SmartWeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartWeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1C2263FB29F9835E00604A9B /* SmartWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWeatherUITests.swift; sourceTree = "<group>"; };
 		1C2263FD29F9835E00604A9B /* SmartWeatherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWeatherUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,7 +109,6 @@
 		1C2263F029F9835E00604A9B /* SmartWeatherTests */ = {
 			isa = PBXGroup;
 			children = (
-				1C2263F129F9835E00604A9B /* SmartWeatherTests.swift */,
 			);
 			path = SmartWeatherTests;
 			sourceTree = "<group>";
@@ -121,7 +116,6 @@
 		1C2263FA29F9835E00604A9B /* SmartWeatherUITests */ = {
 			isa = PBXGroup;
 			children = (
-				1C2263FB29F9835E00604A9B /* SmartWeatherUITests.swift */,
 				1C2263FD29F9835E00604A9B /* SmartWeatherUITestsLaunchTests.swift */,
 			);
 			path = SmartWeatherUITests;
@@ -137,6 +131,7 @@
 				1C2263D329F9835D00604A9B /* Sources */,
 				1C2263D429F9835D00604A9B /* Frameworks */,
 				1C2263D529F9835D00604A9B /* Resources */,
+				1C22640A29F986B800604A9B /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -253,6 +248,28 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C22640A29F986B800604A9B /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1C2263D329F9835D00604A9B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -268,7 +285,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C2263F229F9835E00604A9B /* SmartWeatherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +292,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C2263FC29F9835E00604A9B /* SmartWeatherUITests.swift in Sources */,
 				1C2263FE29F9835E00604A9B /* SmartWeatherUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
