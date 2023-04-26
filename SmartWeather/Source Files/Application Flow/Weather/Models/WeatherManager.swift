@@ -7,28 +7,45 @@
 
 import Foundation
 import WeatherKit
-import CoreLocation
 
 protocol WeatherManagerProtocol {
     var service: WeatherService { get }
     var currentWeather: CurrentWeather? { get }
-    func getWeatherForLocation(location: CLLocation) async
+    func getWeatherForLocation() async
 }
 
 final class WeatherManager: WeatherManagerProtocol {
     let service: WeatherService
     var currentWeather: CurrentWeather?
 
+    private var locationManager: LocationManagerProtocol
+
     init(
         service: WeatherService = WeatherService(),
-        currentWeather: CurrentWeather? = nil
+        currentWeather: CurrentWeather? = nil,
+        locationManager: LocationManagerProtocol = ApplicationServices.shared.locationManager
     ) {
         self.service = service
         self.currentWeather = currentWeather
+        self.locationManager = locationManager
     }
 
-    func getWeatherForLocation(location: CLLocation) async {
+    var symbol: String {
+        currentWeather?.symbolName ?? "location.slash.fill"
+    }
+
+    var temperature: String {
+        let temperature = currentWeather?.temperature.converted(to: .celsius)
+        return temperature?.description ?? "Location Disabled"
+    }
+
+    var condition: String {
+        currentWeather?.condition.description ?? "Unknown"
+    }
+
+    func getWeatherForLocation() async {
         do {
+            let location = locationManager.currentLocation
             let weather = try await service.weather(for: location)
             currentWeather = weather.currentWeather
         } catch {
