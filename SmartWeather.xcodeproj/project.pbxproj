@@ -13,6 +13,7 @@
 		1C2263E429F9835E00604A9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C2263E329F9835E00604A9B /* Assets.xcassets */; };
 		1C2263E729F9835E00604A9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C2263E529F9835E00604A9B /* LaunchScreen.storyboard */; };
 		1C2263FE29F9835E00604A9B /* SmartWeatherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2263FD29F9835E00604A9B /* SmartWeatherUITestsLaunchTests.swift */; };
+		1C22641929F98A4100604A9B /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22641829F98A4100604A9B /* WeatherManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		1C2263ED29F9835E00604A9B /* SmartWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C2263F729F9835E00604A9B /* SmartWeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartWeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C2263FD29F9835E00604A9B /* SmartWeatherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWeatherUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1C22641829F98A4100604A9B /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		1C22641A29F98C2100604A9B /* SmartWeather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SmartWeather.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +99,6 @@
 				1C22640B29F9881400604A9B /* Source Files */,
 				1C22640C29F9881F00604A9B /* Resources */,
 				1C22640D29F9882400604A9B /* Supporting Files */,
-				1C2263DE29F9835D00604A9B /* WeatherViewController.swift */,
 			);
 			path = SmartWeather;
 			sourceTree = "<group>";
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				1C2263E829F9835E00604A9B /* Info.plist */,
+				1C22641A29F98C2100604A9B /* SmartWeather.entitlements */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 		1C22640E29F9887600604A9B /* Application Flow */ = {
 			isa = PBXGroup;
 			children = (
+				1C22641429F98A1A00604A9B /* Weather */,
 			);
 			path = "Application Flow";
 			sourceTree = "<group>";
@@ -188,6 +192,39 @@
 				1C2263E529F9835E00604A9B /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		1C22641429F98A1A00604A9B /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				1C22641729F98A3400604A9B /* Models */,
+				1C22641629F98A3000604A9B /* Views */,
+				1C22641529F98A2000604A9B /* Controllers */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		1C22641529F98A2000604A9B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1C2263DE29F9835D00604A9B /* WeatherViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1C22641629F98A3000604A9B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1C22641729F98A3400604A9B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1C22641829F98A4100604A9B /* WeatherManager.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,6 +380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C22641929F98A4100604A9B /* WeatherManager.swift in Sources */,
 				1C2263DF29F9835D00604A9B /* WeatherViewController.swift in Sources */,
 				1C2263DB29F9835D00604A9B /* AppDelegate.swift in Sources */,
 				1C2263DD29F9835D00604A9B /* SceneDelegate.swift in Sources */,
@@ -510,6 +548,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "SmartWeather/Supporting Files/SmartWeather.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G6NTB33VYZ;
@@ -537,6 +576,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "SmartWeather/Supporting Files/SmartWeather.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G6NTB33VYZ;
