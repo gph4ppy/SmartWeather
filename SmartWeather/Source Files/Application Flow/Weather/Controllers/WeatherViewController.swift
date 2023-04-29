@@ -8,9 +8,17 @@
 import UIKit
 
 final class WeatherViewController: UIViewController {
+
+    // MARK: - Internal Properties
+
     var weatherView: WeatherView!
+
+    // MARK: - Services
+
     private var locationService: LocationServiceProtocol
     private var weatherManager: WeatherManagerProtocol
+
+    // MARK: - Initializers
 
     init(
         locationService: LocationServiceProtocol = ApplicationServices.shared.locationService,
@@ -19,7 +27,6 @@ final class WeatherViewController: UIViewController {
         self.locationService = locationService
         self.weatherManager = weatherManager
         super.init(nibName: nil, bundle: nil)
-
         self.locationService.delegate = self
     }
 
@@ -27,10 +34,14 @@ final class WeatherViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
+
+    // MARK: - Private Methods
 
     private func setupView() {
         initializeWeatherView()
@@ -47,11 +58,21 @@ final class WeatherViewController: UIViewController {
     }
 }
 
+// MARK: - WeatherViewController+LocationServiceDelegate
+
 extension WeatherViewController: LocationServiceDelegate {
     func didSetLocation() {
-        Task {
-            await weatherManager.getWeatherForLocation(locationService.manager.currentLocation)
-            initializeWeatherView()
+        let group = DispatchGroup()
+        group.enter()
+
+        Task(priority: .background) {
+            let currentLocation = locationService.manager.currentLocation
+            await weatherManager.getWeatherForLocation(currentLocation)
+            group.leave()
+        }
+
+        group.notify(queue: .main) { [weak self] in
+            self?.initializeWeatherView()
         }
     }
 }
