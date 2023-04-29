@@ -20,8 +20,6 @@ extension LocationService: CLLocationManagerDelegate {
         }
     }
 
-    // MARK: - Required Methods
-
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.manager.stopUpdatingLocation()
         guard let newLocation = locations.first else { return }

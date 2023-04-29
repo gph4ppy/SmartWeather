@@ -36,7 +36,7 @@ final class WeatherManager: WeatherManagerProtocol {
 
     var temperature: String {
         let temperature = currentWeather?.temperature.converted(to: .celsius)
-        return temperature?.description ?? "Location Disabled"
+        return temperature?.description ?? "?"
     }
 
     var condition: String {

@@ -20,6 +20,7 @@ final class WeatherView: UIView {
 
     private var cityLabel: UILabel!
     private var symbolView: UIImageView!
+    private var conditionLabel: UILabel!
 
     // MARK: - Initializers
 
@@ -59,17 +60,21 @@ private extension WeatherView {
     func addSubviews() {
         addCityLabel()
         addSymbolImageView()
+        addConditionLabel()
     }
 
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            cityLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 24),
+            cityLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             cityLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
 
-            symbolView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 16),
+            symbolView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 8),
             symbolView.widthAnchor.constraint(equalToConstant: 100),
             symbolView.heightAnchor.constraint(equalToConstant: 100),
-            symbolView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
+            symbolView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+
+            conditionLabel.topAnchor.constraint(equalTo: symbolView.bottomAnchor, constant: 8),
+            conditionLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
         ])
     }
 }
@@ -78,9 +83,16 @@ private extension WeatherView {
 
 private extension WeatherView {
     func addCityLabel() {
-        let label = ComponentsFactory.createLabel(text: city, fontSize: 24, weight: .bold)
+        let text = "\(city) (\(temperature))"
+        let label = ComponentsFactory.createLabel(text: text, fontSize: 26, weight: .bold)
         cityLabel = label
         addSubview(cityLabel)
+    }
+
+    func addConditionLabel() {
+        let label = ComponentsFactory.createLabel(text: condition, fontSize: 20, weight: .medium)
+        conditionLabel = label
+        addSubview(conditionLabel)
     }
 
     func addSymbolImageView() {
