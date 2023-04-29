@@ -27,12 +27,15 @@ final class WeatherView: UIView {
         self.condition = condition
         self.city = city
         super.init(frame: .zero)
-        backgroundColor = .red
         setupView()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func didMoveToWindow() {
+        setGradientBackground()
     }
 
     private func setupView() {
@@ -50,7 +53,10 @@ final class WeatherView: UIView {
 
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(systemName: symbol)
+
+        let configuration = UIImage.SymbolConfiguration(paletteColors: [.white, .systemYellow, .systemBlue])
+        let image = UIImage(systemName: symbol, withConfiguration: configuration)?.withRenderingMode(.alwaysTemplate)
+        imageView.image = image
         imageView.contentMode = .scaleAspectFit
         symbolView = imageView
         addSubview(symbolView)
@@ -66,5 +72,15 @@ final class WeatherView: UIView {
             symbolView.heightAnchor.constraint(equalToConstant: 100),
             symbolView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
         ])
+    }
+
+    private func setGradientBackground() {
+        let bottomColor = UIColor(red: 0.504, green: 0.732, blue: 1, alpha: 1)
+        let topColor =  UIColor(red: 0, green: 0.04, blue: 1, alpha: 0)
+        let gradient = CAGradientLayer()
+        gradient.colors = [bottomColor.cgColor, topColor.cgColor]
+        gradient.locations = [0, 1]
+        gradient.frame = bounds
+        layer.insertSublayer(gradient, at: 0)
     }
 }
