@@ -7,25 +7,24 @@
 
 import CoreLocation
 
+protocol LocationServiceDelegate: AnyObject {
+    func didSetLocation()
+}
+
 protocol LocationServiceProtocol {
     var manager: SWLocationManager { get }
+    var delegate: LocationServiceDelegate? { get set }
     var city: String? { get }
-    var country: String? { get }
 }
 
 final class LocationService: NSObject, LocationServiceProtocol {
     let manager: SWLocationManager
     var city: String?
-    var country: String?
+    weak var delegate: LocationServiceDelegate?
 
     init(manager: SWLocationManager = SWLocationManager()) {
         self.manager = manager
         super.init()
         manager.delegate = self
-
-        Task {
-            city = await manager.getPlaceMark().city
-            country = await manager.getPlaceMark().country
-        }
     }
 }

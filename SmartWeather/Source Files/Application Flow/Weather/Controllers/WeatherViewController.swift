@@ -8,6 +8,7 @@
 import UIKit
 
 final class WeatherViewController: UIViewController {
+    var weatherView: WeatherView!
     private var locationService: LocationServiceProtocol
     private var weatherManager: WeatherManagerProtocol
 
@@ -18,6 +19,8 @@ final class WeatherViewController: UIViewController {
         self.locationService = locationService
         self.weatherManager = weatherManager
         super.init(nibName: nil, bundle: nil)
+
+        self.locationService.delegate = self
     }
 
     required init?(coder: NSCoder) {
@@ -26,5 +29,29 @@ final class WeatherViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+    }
+
+    private func setupView() {
+        initializeWeatherView()
+    }
+
+    private func initializeWeatherView() {
+        weatherView = WeatherView(
+            symbol: weatherManager.symbol,
+            temperature: weatherManager.temperature,
+            condition: weatherManager.condition,
+            city: locationService.city ?? "Unknown City"
+        )
+        view = weatherView
+    }
+}
+
+extension WeatherViewController: LocationServiceDelegate {
+    func didSetLocation() {
+        Task {
+            await weatherManager.getWeatherForLocation(locationService.manager.currentLocation)
+            initializeWeatherView()
+        }
     }
 }

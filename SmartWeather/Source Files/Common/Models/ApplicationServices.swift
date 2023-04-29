@@ -16,7 +16,9 @@ final class ApplicationServices {
     init() {
         let locationManager = SWLocationManager()
         let locationService = LocationService(manager: locationManager)
-        self.weatherManager = WeatherManager(locationService: locationService)
         self.locationService = locationService
+
+        let weatherManager = WeatherManager()
+        self.weatherManager = weatherManager
     }
 }

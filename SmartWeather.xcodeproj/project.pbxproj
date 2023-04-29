@@ -20,6 +20,7 @@
 		1C22642329F9962B00604A9B /* CLLocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22642229F9962B00604A9B /* CLLocationExtension.swift */; };
 		1C22642529F9CA1300604A9B /* SWLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22642429F9CA1300604A9B /* SWLocationManager.swift */; };
 		1C22642929F9CA5400604A9B /* LocationService+CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22642829F9CA5400604A9B /* LocationService+CLLocationManagerDelegate.swift */; };
+		1C22642F29FA6C9500604A9B /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22642E29FA6C9500604A9B /* WeatherView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		1C22642229F9962B00604A9B /* CLLocationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationExtension.swift; sourceTree = "<group>"; };
 		1C22642429F9CA1300604A9B /* SWLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWLocationManager.swift; sourceTree = "<group>"; };
 		1C22642829F9CA5400604A9B /* LocationService+CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationService+CLLocationManagerDelegate.swift"; sourceTree = "<group>"; };
+		1C22642E29FA6C9500604A9B /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 		1C22641629F98A3000604A9B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1C22642E29FA6C9500604A9B /* WeatherView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C22642F29FA6C9500604A9B /* WeatherView.swift in Sources */,
 				1C22641929F98A4100604A9B /* WeatherManager.swift in Sources */,
 				1C22642329F9962B00604A9B /* CLLocationExtension.swift in Sources */,
 				1C2263DF29F9835D00604A9B /* WeatherViewController.swift in Sources */,
