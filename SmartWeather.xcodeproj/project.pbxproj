@@ -24,6 +24,7 @@
 		1C22643629FDC77B00604A9B /* ComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22643529FDC77B00604A9B /* ComponentsFactory.swift */; };
 		1CB972A429FEC0E400E17716 /* LocationServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB972A329FEC0E400E17716 /* LocationServiceDelegate.swift */; };
 		1CB972A629FEC14400E17716 /* WeatherManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB972A529FEC14400E17716 /* WeatherManagerDelegate.swift */; };
+		1CB972A829FECEB000E17716 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB972A729FECEB000E17716 /* UIImageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		1C22643529FDC77B00604A9B /* ComponentsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsFactory.swift; sourceTree = "<group>"; };
 		1CB972A329FEC0E400E17716 /* LocationServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceDelegate.swift; sourceTree = "<group>"; };
 		1CB972A529FEC14400E17716 /* WeatherManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManagerDelegate.swift; sourceTree = "<group>"; };
+		1CB972A729FECEB000E17716 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 			children = (
 				1C22643529FDC77B00604A9B /* ComponentsFactory.swift */,
 				1C22642229F9962B00604A9B /* CLLocationExtension.swift */,
+				1CB972A729FECEB000E17716 /* UIImageExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				1C2263DF29F9835D00604A9B /* WeatherViewController.swift in Sources */,
 				1C22641F29F9946800604A9B /* ApplicationServices.swift in Sources */,
 				1C22641C29F98D9D00604A9B /* LocationService.swift in Sources */,
+				1CB972A829FECEB000E17716 /* UIImageExtension.swift in Sources */,
 				1C22642129F9947600604A9B /* Logger.swift in Sources */,
 				1C2263DB29F9835D00604A9B /* AppDelegate.swift in Sources */,
 				1C22642929F9CA5400604A9B /* LocationService+CLLocationManagerDelegate.swift in Sources */,

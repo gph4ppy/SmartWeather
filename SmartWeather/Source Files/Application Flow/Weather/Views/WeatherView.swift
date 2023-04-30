@@ -47,6 +47,31 @@ final class WeatherView: UIView {
     override func didMoveToWindow() {
         setGradientBackground()
     }
+
+    // MARK: - Methods
+
+    func updateView(
+        symbol: String? = nil,
+        temperature: String? = nil,
+        condition: String? = nil,
+        city: String? = nil
+    ) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+
+            if let symbol {
+                symbolView.image = UIImage.multicolorImage(systemName: symbol)
+            }
+
+            if let city, let temperature {
+                cityLabel.text = "\(city) (\(temperature))"
+            }
+
+            if let condition {
+                conditionLabel.text = condition
+            }
+        }
+    }
 }
 
 // MARK: - Setup Methods
@@ -103,13 +128,7 @@ private extension WeatherView {
     }
 
     func addSymbolImageView() {
-        let paletteColors: [UIColor] = [.white, .systemYellow, .systemBlue]
-        let configuration = UIImage.SymbolConfiguration(paletteColors: paletteColors)
-        let image = UIImage(
-            systemName: symbol,
-            withConfiguration: configuration
-        )?.withRenderingMode(.alwaysTemplate)
-
+        let image = UIImage.multicolorImage(systemName: symbol)
         let imageView = ComponentsFactory.createImageView(image: image)
         symbolView = imageView
         addSubview(symbolView)

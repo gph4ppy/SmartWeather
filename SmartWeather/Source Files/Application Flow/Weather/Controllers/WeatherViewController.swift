@@ -30,6 +30,7 @@ final class WeatherViewController: UIViewController {
         self.weatherManager = weatherManager
         super.init(nibName: nil, bundle: nil)
         self.locationService.delegate = self
+        self.weatherManager.delegate = self
     }
 
     required init?(coder: NSCoder) {
@@ -64,16 +65,8 @@ final class WeatherViewController: UIViewController {
 
 extension WeatherViewController: LocationServiceDelegate {
     func locationService(_ locationService: LocationServiceProtocol, didSetLocation currentLocation: CLLocation) {
-        let group = DispatchGroup()
-        group.enter()
-
         Task(priority: .background) {
             await weatherManager.getWeatherForLocation(currentLocation)
-            group.leave()
-        }
-
-        group.notify(queue: .main) { [weak self] in
-            self?.initializeWeatherView()
         }
     }
 }
@@ -81,5 +74,12 @@ extension WeatherViewController: LocationServiceDelegate {
 // MARK: - WeatherViewController+WeatherManagerDelegate
 
 extension WeatherViewController: WeatherManagerDelegate {
-    func weatherManager(_ weatherManager: WeatherManager, didFetchWeather weather: Weather) {}
+    func weatherManager(_ weatherManager: WeatherManager, didFetchWeather weather: Weather) {
+        weatherView.updateView(
+            symbol: weatherManager.symbol,
+            temperature: weatherManager.temperature,
+            condition: weatherManager.condition,
+            city: locationService.city
+        )
+    }
 }
