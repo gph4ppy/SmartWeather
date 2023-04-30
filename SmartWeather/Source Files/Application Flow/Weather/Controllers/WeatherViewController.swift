@@ -81,5 +81,5 @@ extension WeatherViewController: LocationServiceDelegate {
 // MARK: - WeatherViewController+WeatherManagerDelegate
 
 extension WeatherViewController: WeatherManagerDelegate {
-    func weatherManager(_ weatherManager: WeatherManager, didSetWeather weather: Weather) {}
+    func weatherManager(_ weatherManager: WeatherManager, didFetchWeather weather: Weather) {}
 }

@@ -55,12 +55,19 @@ private extension WeatherView {
     func setupView() {
         addSubviews()
         setupConstraints()
+        setStyling()
     }
 
     func addSubviews() {
         addCityLabel()
         addSymbolImageView()
         addConditionLabel()
+    }
+
+    func setStyling() {
+        ComponentsFactory.Styling.addShadowToView(cityLabel)
+        ComponentsFactory.Styling.addShadowToView(symbolView)
+        ComponentsFactory.Styling.addShadowToView(conditionLabel)
     }
 
     func setupConstraints() {

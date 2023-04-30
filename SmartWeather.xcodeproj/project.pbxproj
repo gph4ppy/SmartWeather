@@ -22,6 +22,8 @@
 		1C22642929F9CA5400604A9B /* LocationService+CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22642829F9CA5400604A9B /* LocationService+CLLocationManagerDelegate.swift */; };
 		1C22642F29FA6C9500604A9B /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22642E29FA6C9500604A9B /* WeatherView.swift */; };
 		1C22643629FDC77B00604A9B /* ComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22643529FDC77B00604A9B /* ComponentsFactory.swift */; };
+		1CB972A429FEC0E400E17716 /* LocationServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB972A329FEC0E400E17716 /* LocationServiceDelegate.swift */; };
+		1CB972A629FEC14400E17716 /* WeatherManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB972A529FEC14400E17716 /* WeatherManagerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		1C22642829F9CA5400604A9B /* LocationService+CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationService+CLLocationManagerDelegate.swift"; sourceTree = "<group>"; };
 		1C22642E29FA6C9500604A9B /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		1C22643529FDC77B00604A9B /* ComponentsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsFactory.swift; sourceTree = "<group>"; };
+		1CB972A329FEC0E400E17716 /* LocationServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceDelegate.swift; sourceTree = "<group>"; };
+		1CB972A529FEC14400E17716 /* WeatherManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManagerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,10 +246,6 @@
 		1C22641729F98A3400604A9B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1C22642729F9CA4500604A9B /* Extensions */,
-				1C22641829F98A4100604A9B /* WeatherManager.swift */,
-				1C22641B29F98D9D00604A9B /* LocationService.swift */,
-				1C22642429F9CA1300604A9B /* SWLocationManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -253,7 +253,8 @@
 		1C22641D29F9946200604A9B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1C22641E29F9946800604A9B /* ApplicationServices.swift */,
+				1CB972A129FEC0A800E17716 /* Services */,
+				1C22642429F9CA1300604A9B /* SWLocationManager.swift */,
 				1C22642029F9947600604A9B /* Logger.swift */,
 			);
 			path = Models;
@@ -265,6 +266,27 @@
 				1C22642829F9CA5400604A9B /* LocationService+CLLocationManagerDelegate.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1CB972A129FEC0A800E17716 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1CB972A229FEC0BE00E17716 /* Delegates */,
+				1C22642729F9CA4500604A9B /* Extensions */,
+				1C22641E29F9946800604A9B /* ApplicationServices.swift */,
+				1C22641829F98A4100604A9B /* WeatherManager.swift */,
+				1C22641B29F98D9D00604A9B /* LocationService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		1CB972A229FEC0BE00E17716 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				1CB972A529FEC14400E17716 /* WeatherManagerDelegate.swift */,
+				1CB972A329FEC0E400E17716 /* LocationServiceDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -423,6 +445,7 @@
 				1C22643629FDC77B00604A9B /* ComponentsFactory.swift in Sources */,
 				1C22642F29FA6C9500604A9B /* WeatherView.swift in Sources */,
 				1C22641929F98A4100604A9B /* WeatherManager.swift in Sources */,
+				1CB972A429FEC0E400E17716 /* LocationServiceDelegate.swift in Sources */,
 				1C22642329F9962B00604A9B /* CLLocationExtension.swift in Sources */,
 				1C2263DF29F9835D00604A9B /* WeatherViewController.swift in Sources */,
 				1C22641F29F9946800604A9B /* ApplicationServices.swift in Sources */,
@@ -430,6 +453,7 @@
 				1C22642129F9947600604A9B /* Logger.swift in Sources */,
 				1C2263DB29F9835D00604A9B /* AppDelegate.swift in Sources */,
 				1C22642929F9CA5400604A9B /* LocationService+CLLocationManagerDelegate.swift in Sources */,
+				1CB972A629FEC14400E17716 /* WeatherManagerDelegate.swift in Sources */,
 				1C22642529F9CA1300604A9B /* SWLocationManager.swift in Sources */,
 				1C2263DD29F9835D00604A9B /* SceneDelegate.swift in Sources */,
 			);

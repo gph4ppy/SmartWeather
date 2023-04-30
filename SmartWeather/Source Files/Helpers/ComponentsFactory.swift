@@ -8,6 +8,25 @@
 import UIKit
 
 enum ComponentsFactory {
+    enum Styling {
+        // swiftlint: disable identifier_name
+        static func addShadowToView(
+            _ view: UIView,
+            color: UIColor = .black,
+            radius: CGFloat = 4.0,
+            opacity: Float = 0.25,
+            x: CGFloat = 0,
+            y: CGFloat = 4
+        ) {
+            view.layer.shadowColor = color.cgColor
+            view.layer.shadowRadius = radius
+            view.layer.shadowOpacity = opacity
+            view.layer.shadowOffset = CGSize(width: x, height: y)
+            view.layer.masksToBounds = false
+        }
+        // swiftlint: enable identifier_name
+    }
+
     static func createLabel(text: String, fontSize: CGFloat, weight: UIFont.Weight) -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false

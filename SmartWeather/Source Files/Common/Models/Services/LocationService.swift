@@ -7,10 +7,6 @@
 
 import CoreLocation
 
-protocol LocationServiceDelegate: AnyObject {
-    func locationService(_ locationService: LocationServiceProtocol, didSetLocation currentLocation: CLLocation)
-}
-
 protocol LocationServiceProtocol {
     var manager: SWLocationManager { get }
     var delegate: LocationServiceDelegate? { get set }

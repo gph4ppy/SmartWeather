@@ -9,10 +9,6 @@ import Foundation
 import WeatherKit
 import CoreLocation
 
-protocol WeatherManagerDelegate: AnyObject {
-    func weatherManager(_ weatherManager: WeatherManager, didSetWeather weather: Weather)
-}
-
 protocol WeatherManagerProtocol {
     var service: WeatherService { get }
     var delegate: WeatherManagerDelegate? { get set }
@@ -59,7 +55,7 @@ final class WeatherManager: WeatherManagerProtocol {
         do {
             let weather = try await service.weather(for: location)
             self.weather = weather
-            delegate?.weatherManager(self, didSetWeather: weather)
+            delegate?.weatherManager(self, didFetchWeather: weather)
         } catch {
             assertionFailure(error.localizedDescription)
         }
