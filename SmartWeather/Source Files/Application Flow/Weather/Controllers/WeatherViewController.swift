@@ -17,9 +17,9 @@ final class WeatherViewController: UIViewController {
 
     // MARK: - Services
 
-    /// A service used for maintaining user's location.
+    /// A service used for managing user's location.
     private(set) var locationService: LocationServiceProtocol
-    /// A service used for maintaining the weather.
+    /// A service used for managing the weather.
     private(set) var weatherManager: WeatherManagerProtocol
 
     // MARK: - Views
