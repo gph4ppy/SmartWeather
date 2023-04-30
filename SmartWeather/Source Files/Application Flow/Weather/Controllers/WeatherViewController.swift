@@ -17,8 +17,14 @@ final class WeatherViewController: UIViewController {
 
     // MARK: - Services
 
-    private var locationService: LocationServiceProtocol
-    private var weatherManager: WeatherManagerProtocol
+    private(set) var locationService: LocationServiceProtocol
+    private(set) var weatherManager: WeatherManagerProtocol
+
+    // MARK: - Views
+
+    var loadingController: UIViewController {
+        ComponentsFactory.createLoadingController(text: "Fetching weather...")
+    }
 
     // MARK: - Initializers
 
@@ -44,9 +50,24 @@ final class WeatherViewController: UIViewController {
         setupView()
     }
 
-    // MARK: - Private Methods
+    // MARK: - Methods
+
+    func showLoadingView() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            present(self.loadingController, animated: true)
+        }
+    }
+
+    func hideLoadingView() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.dismiss(animated: true)
+        }
+    }
 
     private func setupView() {
+        showLoadingView()
         initializeWeatherView()
     }
 
@@ -58,28 +79,5 @@ final class WeatherViewController: UIViewController {
             city: locationService.city ?? "Unknown City"
         )
         view = weatherView
-    }
-}
-
-// MARK: - WeatherViewController+LocationServiceDelegate
-
-extension WeatherViewController: LocationServiceDelegate {
-    func locationService(_ locationService: LocationServiceProtocol, didSetLocation currentLocation: CLLocation) {
-        Task(priority: .background) {
-            await weatherManager.getWeatherForLocation(currentLocation)
-        }
-    }
-}
-
-// MARK: - WeatherViewController+WeatherManagerDelegate
-
-extension WeatherViewController: WeatherManagerDelegate {
-    func weatherManager(_ weatherManager: WeatherManager, didFetchWeather weather: Weather) {
-        weatherView.updateView(
-            symbol: weatherManager.symbol,
-            temperature: weatherManager.temperature,
-            condition: weatherManager.condition,
-            city: locationService.city
-        )
     }
 }
