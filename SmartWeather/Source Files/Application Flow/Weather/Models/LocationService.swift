@@ -8,7 +8,7 @@
 import CoreLocation
 
 protocol LocationServiceDelegate: AnyObject {
-    func didSetLocation()
+    func locationService(_ locationService: LocationServiceProtocol, didSetLocation currentLocation: CLLocation)
 }
 
 protocol LocationServiceProtocol {

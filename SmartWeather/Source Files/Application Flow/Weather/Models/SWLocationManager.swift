@@ -8,19 +8,8 @@
 import CoreLocation
 
 final class SWLocationManager: CLLocationManager {
-    var latitude: Double?
-    var longitude: Double?
-
-    override init() {
-        super.init()
-    }
-
-    var currentLocation: CLLocation {
-        CLLocation(latitude: latitude ?? 0, longitude: longitude ?? 0)
-    }
-
-    func getPlaceMark() async -> (city: String?, country: String?) {
-        guard let data = try? await currentLocation.fetchCityAndCountry() else { return (nil, nil) }
+    func getPlaceMark(of location: CLLocation) async -> (city: String?, country: String?) {
+        guard let data = try? await location.fetchCityAndCountry() else { return (nil, nil) }
         return data
     }
 }

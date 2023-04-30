@@ -25,21 +25,21 @@ extension LocationService: CLLocationManagerDelegate {
         guard let newLocation = locations.first else { return }
         let latitude = newLocation.coordinate.latitude
         let longitude = newLocation.coordinate.longitude
-        self.manager.latitude = latitude
-        self.manager.longitude = longitude
+        let location = CLLocation(latitude: latitude, longitude: longitude)
 
         let group = DispatchGroup()
         group.enter()
 
         Task { [weak self] in
             guard let self else { return }
-            let placeMark = await self.manager.getPlaceMark()
+            let placeMark = await self.manager.getPlaceMark(of: location)
             self.city = placeMark.city
             group.leave()
         }
 
         group.notify(queue: .main) { [weak self] in
-            self?.delegate?.didSetLocation()
+            guard let self else { return }
+            self.delegate?.locationService(self, didSetLocation: location)
         }
     }
 

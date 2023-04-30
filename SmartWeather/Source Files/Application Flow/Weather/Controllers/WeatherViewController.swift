@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CoreLocation
+import WeatherKit
 
 final class WeatherViewController: UIViewController {
 
@@ -61,12 +63,11 @@ final class WeatherViewController: UIViewController {
 // MARK: - WeatherViewController+LocationServiceDelegate
 
 extension WeatherViewController: LocationServiceDelegate {
-    func didSetLocation() {
+    func locationService(_ locationService: LocationServiceProtocol, didSetLocation currentLocation: CLLocation) {
         let group = DispatchGroup()
         group.enter()
 
         Task(priority: .background) {
-            let currentLocation = locationService.manager.currentLocation
             await weatherManager.getWeatherForLocation(currentLocation)
             group.leave()
         }
@@ -75,4 +76,10 @@ extension WeatherViewController: LocationServiceDelegate {
             self?.initializeWeatherView()
         }
     }
+}
+
+// MARK: - WeatherViewController+WeatherManagerDelegate
+
+extension WeatherViewController: WeatherManagerDelegate {
+    func weatherManager(_ weatherManager: WeatherManager, didSetWeather weather: Weather) {}
 }
