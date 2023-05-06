@@ -14,7 +14,8 @@ extension WeatherViewController: WeatherManagerDelegate {
             symbol: weatherManager.symbol,
             temperature: weatherManager.temperature,
             condition: weatherManager.condition,
-            city: locationService.city
+            city: locationService.city,
+            hourlyForecast: weatherManager.hourlyForecast
         )
     }
 }

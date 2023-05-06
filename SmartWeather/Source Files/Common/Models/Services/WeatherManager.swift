@@ -15,6 +15,7 @@ protocol WeatherManagerProtocol {
     var symbol: String { get }
     var temperature: String { get }
     var condition: String { get }
+    var hourlyForecast: [HourlyForecast] { get }
     func getWeatherForLocation(_ location: CLLocation) async
 }
 
@@ -24,7 +25,7 @@ final class WeatherManager: WeatherManagerProtocol {
 
     let service: WeatherService
     weak var delegate: WeatherManagerDelegate?
-    private var weather: Weather?
+    var weather: Weather?
 
     var symbol: String {
         weather?.currentWeather.symbolName ?? "location.slash.fill"
@@ -37,6 +38,16 @@ final class WeatherManager: WeatherManagerProtocol {
 
     var condition: String {
         weather?.currentWeather.condition.description ?? "Unknown"
+    }
+
+    var hourlyForecast: [HourlyForecast] {
+        weather?.hourlyForecast.forecast.compactMap {
+            HourlyForecast(
+                hour: $0.date,
+                temperature: $0.temperature.converted(to: .celsius).description,
+                symbol: $0.symbolName
+            )
+        } ?? []
     }
 
     // MARK: - Initializers

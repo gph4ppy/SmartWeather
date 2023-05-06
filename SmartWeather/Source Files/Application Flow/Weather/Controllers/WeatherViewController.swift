@@ -86,7 +86,8 @@ final class WeatherViewController: UIViewController {
             symbol: weatherManager.symbol,
             temperature: weatherManager.temperature,
             condition: weatherManager.condition,
-            city: locationService.city ?? "Unknown City"
+            city: locationService.city ?? "Unknown City",
+            hourlyForecast: weatherManager.hourlyForecast
         )
         view = weatherView
     }
