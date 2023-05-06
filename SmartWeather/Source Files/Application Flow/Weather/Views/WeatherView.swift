@@ -22,8 +22,7 @@ final class WeatherView: UIView {
     private var cityLabel: UILabel!
     private var symbolView: UIImageView!
     private var conditionLabel: UILabel!
-    private var hourlyForecastScrollView: UIScrollView!
-    private var hourlyForecastStackView: UIStackView!
+    private var hourlyForecastView: HourlyForecastView!
 
     // MARK: - Initializers
 
@@ -78,7 +77,7 @@ final class WeatherView: UIView {
             }
 
             if !hourlyForecast.isEmpty {
-                addHourForecastViews(data: hourlyForecast)
+                hourlyForecastView.updateView(for: hourlyForecast)
             }
         }
     }
@@ -119,15 +118,10 @@ private extension WeatherView {
             conditionLabel.topAnchor.constraint(equalTo: symbolView.bottomAnchor, constant: 8),
             conditionLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
 
-            hourlyForecastScrollView.topAnchor.constraint(equalTo: conditionLabel.bottomAnchor, constant: 16),
-            hourlyForecastScrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            hourlyForecastScrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            hourlyForecastScrollView.heightAnchor.constraint(equalToConstant: 108),
-
-            hourlyForecastStackView.topAnchor.constraint(equalTo: hourlyForecastScrollView.topAnchor, constant: 16),
-            hourlyForecastStackView.leadingAnchor.constraint(equalTo: hourlyForecastScrollView.leadingAnchor, constant: 16),
-            hourlyForecastStackView.trailingAnchor.constraint(equalTo: hourlyForecastScrollView.trailingAnchor, constant: -16),
-            hourlyForecastStackView.bottomAnchor.constraint(equalTo: hourlyForecastScrollView.bottomAnchor, constant: -16)
+            hourlyForecastView.topAnchor.constraint(equalTo: conditionLabel.bottomAnchor, constant: 16),
+            hourlyForecastView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            hourlyForecastView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            hourlyForecastView.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
 }
@@ -156,53 +150,9 @@ private extension WeatherView {
     }
 
     func addDailyTemperatureScrollView() {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .gray
-        scrollView.layer.compositingFilter = "overlayBlendMode"
-        scrollView.layer.cornerRadius = 18
-        scrollView.showsHorizontalScrollIndicator = false
-        hourlyForecastScrollView = scrollView
-        addSubview(hourlyForecastScrollView)
-        addDailyTemperatureStackView()
-    }
-
-    func addDailyTemperatureStackView() {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.spacing = 16
-        hourlyForecastStackView = stackView
-        hourlyForecastScrollView.addSubview(hourlyForecastStackView)
-        addHourForecastViews(data: hourForecast)
-    }
-
-    func addHourForecastViews(data: [HourlyForecast]) {
-        guard data.count >= 12 else { return }
-        for forecast in data[0...12] {
-            let forecastView = UIStackView()
-            forecastView.axis = .vertical
-            forecastView.spacing = 8
-            forecastView.alignment = .center
-
-            let weatherImage = UIImage.multicolorImage(systemName: forecast.symbol)
-            let weatherImageView = UIImageView(image: weatherImage)
-            weatherImageView.contentMode = .scaleAspectFit
-
-            forecastView.addArrangedSubview(weatherImageView)
-
-            let temperatureLabel = ComponentsFactory.createLabel(
-                text: forecast.temperature,
-                fontSize: 14,
-                weight: .regular
-            )
-            forecastView.addArrangedSubview(temperatureLabel)
-
-            let timeLabel = ComponentsFactory.createLabel(text: forecast.hour, fontSize: 12, weight: .bold)
-            forecastView.addArrangedSubview(timeLabel)
-
-            hourlyForecastStackView.addArrangedSubview(forecastView)
-        }
+        let forecastView = HourlyForecastView(forecast: hourForecast)
+        hourlyForecastView = forecastView
+        addSubview(hourlyForecastView)
     }
 
     func setGradientBackground() {
